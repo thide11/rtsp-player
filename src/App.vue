@@ -1,30 +1,84 @@
+<script lang="ts">
+import { ref, toRefs } from 'vue'
+// import InfoCard from './components/InfoCard.vue';
+// import VideoCamera from './components/VideoCamera.vue';
+export default {
+  mounted() {
+    console.log(this.$refs.videoGrid);
+    function resizeVideo() {
+      //@ts-ignore
+      // this.$refs.videoGrid.style.width = window.innerWidth + "px";
+      //@ts-ignore
+      this.$refs.videoGrid.style.height = window.innerHeight + "px";
+    }
+
+    window.addEventListener('resize', resizeVideo.bind(this), false);
+    resizeVideo.bind(this)();
+  },
+}
+
+</script>
+
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+  import InfoCard from './components/InfoCard.vue';
+  import VideoCamera from './components/VideoCamera.vue';
+
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <!-- <img src="loader.gif" id="loader" v-if="showLoader"/> -->
+  <div id="video-grid" ref="videoGrid">
+    <!-- <video id="videoElement" style="display: none;" autoplay muted playsinline></video> -->
+    <div class="card" style="height: 100%;">
+      <!-- <p id="status"></p>
+      <select id="cameraSelector">
+        <option value="" selected="true">Selecione a camera...</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <button id="exibirVideo">Exibir video</button> -->
+      <InfoCard/>
+    </div>
+    <div class="card">
+      <VideoCamera chanel-id="2"/>
+    </div>
+    <div class="card">
+      <VideoCamera chanel-id="3"/>
+    </div>
+    <div class="card">
+      <VideoCamera chanel-id="4"/>
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.card {
+  /* width: 50%; */
+  height: 50%;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+#video-grid {
+  display:grid;
+  grid-template-columns: 704px 704px;
+  /* flex-wrap: wrap; */
+  /* height: 100vh; */
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+@media screen and (max-width: 1408px) {
+
+  #video-grid {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+@media screen and (max-width: 704px) {
+
+  #video-grid {
+    display:grid;
+    grid-template-columns: 1fr;
+  }
+
 }
 </style>

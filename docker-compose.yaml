@@ -1,0 +1,25 @@
+version: "3.2"
+
+services:
+  server:
+    container_name: servidor
+    image: thide11/rtsp-player:latest
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    # command: npm run dev
+    # volumes:
+    #   - ./:/app
+    ports:
+      - "8080:8080"
+  conversor:
+    container_name: conversor_rtsp
+    image: ghcr.io/deepch/rtsptoweb:latest
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    # command: npm run dev
+    volumes:
+      - ./rtsp-conversor-config.json:/config/config.json
+    ports:
+      - "8083:8083"
