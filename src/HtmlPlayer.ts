@@ -19,7 +19,9 @@ export default class HtmlPlayer {
     const canalId = this.cameraId;
     console.log("Id do canal:")
     console.log(canalId)
-    const url = `ws://187.255.186.172:8083/stream/${streamId}/channel/${canalId}/mse?uuid=${streamId}&channel=${canalId}`
+    const url = `ws://${window.location.hostname}:8083/stream/${streamId}/channel/${canalId}/mse?uuid=${streamId}&channel=${canalId}`
+    console.log("Url:")
+    console.log(url)
 
     this.mse = new MediaSource();
     this.videoRef.src = window.URL.createObjectURL(this.mse);

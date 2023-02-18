@@ -3,10 +3,10 @@ version: "3.2"
 services:
   server:
     container_name: servidor
-    image: thide11/rtsp-player:latest
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
+    # image: thide11/rtsp-player:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     # command: npm run dev
     # volumes:
     #   - ./:/app
